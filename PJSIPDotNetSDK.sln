@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSJIPDotNetSDK", "pjsipDotNetSDK\PSJIPDotNetSDK.csproj", "{196E7DEE-438C-43CF-A3CC-AC7E0580DB98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestGui", "TestGui\TestGui.csproj", "{41B2667C-58C8-4CB9-81AE-0C0E58495626}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		RemoteDebug|Any CPU = RemoteDebug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{196E7DEE-438C-43CF-A3CC-AC7E0580DB98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{196E7DEE-438C-43CF-A3CC-AC7E0580DB98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{196E7DEE-438C-43CF-A3CC-AC7E0580DB98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{196E7DEE-438C-43CF-A3CC-AC7E0580DB98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{196E7DEE-438C-43CF-A3CC-AC7E0580DB98}.RemoteDebug|Any CPU.ActiveCfg = RemoteDebug|Any CPU
+		{196E7DEE-438C-43CF-A3CC-AC7E0580DB98}.RemoteDebug|Any CPU.Build.0 = RemoteDebug|Any CPU
+		{41B2667C-58C8-4CB9-81AE-0C0E58495626}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41B2667C-58C8-4CB9-81AE-0C0E58495626}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41B2667C-58C8-4CB9-81AE-0C0E58495626}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41B2667C-58C8-4CB9-81AE-0C0E58495626}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41B2667C-58C8-4CB9-81AE-0C0E58495626}.RemoteDebug|Any CPU.ActiveCfg = RemoteDebug|Any CPU
+		{41B2667C-58C8-4CB9-81AE-0C0E58495626}.RemoteDebug|Any CPU.Build.0 = RemoteDebug|Any CPU
+		{41B2667C-58C8-4CB9-81AE-0C0E58495626}.RemoteDebug|Any CPU.Deploy.0 = RemoteDebug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
