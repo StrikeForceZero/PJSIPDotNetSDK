@@ -47,7 +47,10 @@ namespace TestGui
         [STAThread]
         static void Main()
         {
-            RunSingleInstance();
+            //RunSingleInstance();
+            var application = new App();
+            application.InitializeComponent();
+            application.Run();
         }
 
         static void RunSingleInstance()

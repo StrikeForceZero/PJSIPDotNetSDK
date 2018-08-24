@@ -1,14 +1,15 @@
 ﻿<Window x:Class="TestGui.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:local="clr-namespace:TestGui"
         Title="MainWindow" Height="412" Width="551.792" Loaded="Window_Loaded" Closed="Window_Closed">
     <Grid>
-        <Button Name="MakeCallButton" Content="Call" HorizontalAlignment="Left" Margin="135,11,0,0" VerticalAlignment="Top" Width="75" Click="MakeCallButton_Click"/>
+        <Button Name="MakeCallButton" Content="Call" HorizontalAlignment="Left" Margin="135,11,0,0" VerticalAlignment="Top" Width="75" Click="MakeCallButton_Click" IsEnabled="{Binding isRegistered, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}" />
         <TextBox Name="PhoneNumberTextBox" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <ListBox Name="CallList" HorizontalAlignment="Left" Height="86" Margin="135,126,0,0" VerticalAlignment="Top" Width="395" SelectionMode="Multiple"/>
-        <Button Name="AnswerButton" Content="Answer" HorizontalAlignment="Left" Margin="215,11,0,0" VerticalAlignment="Top" Width="75" Click="AnswerButton_Click"/>
-        <Button Name="HangupButton" Content="Hangup" HorizontalAlignment="Left" Margin="295,11,0,0" VerticalAlignment="Top" Width="75" Click="HangupButton_Click"/>
-        <Button Name="BridgeButton" Content="Bridge" HorizontalAlignment="Left" Margin="375,11,0,0" VerticalAlignment="Top" Width="75" Click="BridgeButton_Click"/>
+        <Button Name="AnswerButton" Content="Answer" HorizontalAlignment="Left" Margin="215,11,0,0" VerticalAlignment="Top" Width="75" Click="AnswerButton_Click" IsEnabled="{Binding hasIncomingCall, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"/>
+        <Button Name="HangupButton" Content="Hangup" HorizontalAlignment="Left" Margin="295,11,0,0" VerticalAlignment="Top" Width="75" Click="HangupButton_Click" IsEnabled="{Binding hasActiveCall, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"/>
+        <Button Name="BridgeButton" Content="Bridge" HorizontalAlignment="Left" Margin="375,11,0,0" VerticalAlignment="Top" Width="75" Click="BridgeButton_Click" IsEnabled="{Binding hasActiveCall, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"/>
         <Button Name="Button1" Content="1" HorizontalAlignment="Left" Margin="11,40,0,0" VerticalAlignment="Top" Width="40" Click="DTMFButton_Click" Height="43"/>
         <Button Name="Button2" Content="2" HorizontalAlignment="Left" Margin="51,40,0,0" VerticalAlignment="Top" Width="39" Height="43" Click="DTMFButton_Click"/>
         <Button Name="Button3" Content="3" HorizontalAlignment="Left" Margin="90,40,0,0" VerticalAlignment="Top" Width="40" Height="43" Click="DTMFButton_Click"/>
@@ -21,23 +22,23 @@
         <Button Name="Button0" Content="0" HorizontalAlignment="Left" Margin="51,169,0,0" VerticalAlignment="Top" Width="39" Height="43" Click="DTMFButton_Click"/>
         <Button Name="ButtonStar" Content="*" HorizontalAlignment="Left" Margin="11,169,0,0" VerticalAlignment="Top" Width="40" Height="43" Click="DTMFButton_Click"/>
         <Button Name="ButtonPound" Content="#" HorizontalAlignment="Left" Margin="90,169,0,0" VerticalAlignment="Top" Width="40" Height="43" Click="DTMFButton_Click"/>
-        <Button Name="HoldButton" Content="Hold" HorizontalAlignment="Left" Margin="455,11,-13,0" VerticalAlignment="Top" Width="75" Click="HoldButton_Click"/>
+        <Button Name="HoldButton" Content="Hold" HorizontalAlignment="Left" Margin="455,11,-13,0" VerticalAlignment="Top" Width="75" Click="HoldButton_Click" IsEnabled="{Binding hasActiveCall, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"/>
         <Label Name="RegisteredLabel" Content="Not Registered" HorizontalAlignment="Left" Margin="11,346,0,0" VerticalAlignment="Top"/>
         <TextBox Name="UsernameTextBox" HorizontalAlignment="Left" Height="23" Margin="10,240,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox Name="PasswordTextBox" HorizontalAlignment="Left" Height="23" Margin="10,268,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox Name="HostTextBox" HorizontalAlignment="Left" Height="23" Margin="11,296,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button Name="RegisterButton" Content="Register Account" HorizontalAlignment="Left" Margin="11,324,0,0" VerticalAlignment="Top" Width="119" Click="RegisterButton_Click"/>
-        <Button Name="StopInOutButton" Content="Stop In/Out" HorizontalAlignment="Left" Margin="295,38,0,0" VerticalAlignment="Top" Width="75" Click="StopInOutButton_Click"/>
-        <Button Name="StopInputButton" Content="Stop Input" HorizontalAlignment="Left" Margin="375,38,0,0" VerticalAlignment="Top" Width="75" Click="StopInputButton_Click"/>
-        <Button Name="StopOutputButton" Content="Stop Output" HorizontalAlignment="Left" Margin="455,38,0,0" VerticalAlignment="Top" Width="75" Click="StopOutputButton_Click"/>
-        <Button Name="StartInOutButton" Content="Start In/Out" HorizontalAlignment="Left" Margin="295,65,0,0" VerticalAlignment="Top" Width="75" Click="StartInOutButton_Click"/>
-        <Button Name="StartInputButton" Content="Start Input" HorizontalAlignment="Left" Margin="375,65,0,0" VerticalAlignment="Top" Width="75" Click="StartInputButton_Click"/>
-        <Button Name="StartOutputButton" Content="Start Output" HorizontalAlignment="Left" Margin="455,65,0,0" VerticalAlignment="Top" Width="75" Click="StartOutputButton_Click"/>
+        <Button Name="StopInOutButton" Content="Stop In/Out" HorizontalAlignment="Left" Margin="295,38,0,0" VerticalAlignment="Top" Width="75" Click="StopInOutButton_Click" IsEnabled="{Binding hasActiveCall, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"/>
+        <Button Name="StopInputButton" Content="Stop Input" HorizontalAlignment="Left" Margin="375,38,0,0" VerticalAlignment="Top" Width="75" Click="StopInputButton_Click" IsEnabled="{Binding hasActiveCall, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"/>
+        <Button Name="StopOutputButton" Content="Stop Output" HorizontalAlignment="Left" Margin="455,38,0,0" VerticalAlignment="Top" Width="75" Click="StopOutputButton_Click" IsEnabled="{Binding hasActiveCall, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"/>
+        <Button Name="StartInOutButton" Content="Start In/Out" HorizontalAlignment="Left" Margin="295,65,0,0" VerticalAlignment="Top" Width="75" Click="StartInOutButton_Click" IsEnabled="{Binding hasActiveCall, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"/>
+        <Button Name="StartInputButton" Content="Start Input" HorizontalAlignment="Left" Margin="375,65,0,0" VerticalAlignment="Top" Width="75" Click="StartInputButton_Click" IsEnabled="{Binding hasActiveCall, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"/>
+        <Button Name="StartOutputButton" Content="Start Output" HorizontalAlignment="Left" Margin="455,65,0,0" VerticalAlignment="Top" Width="75" Click="StartOutputButton_Click" IsEnabled="{Binding hasActiveCall, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"/>
         <TextBlock Name="TotalCallsLabel" HorizontalAlignment="Left" Margin="135,97,0,0" TextWrapping="Wrap" Text="0 Calls" VerticalAlignment="Top" Height="19" Width="395" TextAlignment="Center"/>
-        <Button Name="TransferButton" Content="Transfer" HorizontalAlignment="Left" Margin="135,38,0,0" VerticalAlignment="Top" Width="75" Click="TransferButton_Click"/>
-        <Button Name="TransferAttendedButton" Content="Xfer Attend" HorizontalAlignment="Left" Margin="215,38,0,0" VerticalAlignment="Top" Width="75" Click="TransferAttendedButton_Click"/>
+        <Button Name="TransferButton" Content="Transfer" HorizontalAlignment="Left" Margin="135,38,0,0" VerticalAlignment="Top" Width="75" Click="TransferButton_Click" IsEnabled="{Binding hasActiveCall, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"/>
+        <Button Name="TransferAttendedButton" Content="Xfer Attend" HorizontalAlignment="Left" Margin="215,38,0,0" VerticalAlignment="Top" Width="75" Click="TransferAttendedButton_Click" IsEnabled="{Binding hasActiveCall, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"/>
         <ListBox Name="CallLogList" HorizontalAlignment="Left" Height="155" Margin="135,217,0,0" VerticalAlignment="Top" Width="395"/>
         <TextBox Name="RxTextBox" HorizontalAlignment="Left" Height="22" Margin="135,65,0,0" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="75"/>
-        <Button Name="BoostRxButton" Content="Boost Rx" HorizontalAlignment="Left" Margin="215,65,0,0" VerticalAlignment="Top" Width="75" Click="BoostRxButton_Click"/>
+        <Button Name="BoostRxButton" Content="Boost Rx" HorizontalAlignment="Left" Margin="215,65,0,0" VerticalAlignment="Top" Width="75" Click="BoostRxButton_Click" IsEnabled="{Binding hasActiveCall, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"/>
     </Grid>
 </Window>
