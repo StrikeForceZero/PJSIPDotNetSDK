@@ -147,6 +147,8 @@ namespace TestGui
             Console.WriteLine(ci.localContact);
             Console.WriteLine(ci.stateText);*/
 
+            hasIncomingCall = true;
+
             foreach (Call call in sm.Calls.Values.ToList())
             {
                 Console.WriteLine("State: " + call.State + " : " + call.LastState);
