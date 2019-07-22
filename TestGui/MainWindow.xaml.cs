@@ -28,6 +28,7 @@ namespace TestGui
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         PJSIPDotNetSDK.SipManager sm;
+        System.Timers.Timer timer = new System.Timers.Timer(250);
 
         private bool _isRegistered = false;
         public bool isRegistered
@@ -90,7 +91,6 @@ namespace TestGui
                 MessageBox.Show(ex.Message);
             }
 
-            System.Timers.Timer timer = new System.Timers.Timer(250);
             timer.Elapsed += (a, b) =>
             {
                 Application.Current.Dispatcher.BeginInvoke(
@@ -242,11 +242,6 @@ namespace TestGui
                     sm.DefaultAccount.MakeCall(PhoneNumberTextBox.Text);
                 }
             );
-        }
-
-        private void Window_Closed(object sender, EventArgs e)
-        {
-            sm.Dispose();
         }
 
         private void AnswerButton_Click(object sender, RoutedEventArgs e)
@@ -476,6 +471,24 @@ namespace TestGui
                         am.adjustRxLevel(float.Parse(RxTextBox.Text));
                     }
                 });
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            timer.Stop();
+
+            sm.AccountStateChange -= sm_AccountStateChange;
+            sm.CallStateChange -= sm_CallStateChange;
+            sm.CallMediaStateChange -= sm_CallMediaStateChange;
+            sm.IncomingCall -= sm_IncomingCall;
+
+            Application.Current.Dispatcher.Invoke(
+                DispatcherPriority.Normal,
+                (ThreadStart)delegate ()
+                {
+                    sm.Endpoint.Dispose();
+                }
+            );
         }
     }
 }
